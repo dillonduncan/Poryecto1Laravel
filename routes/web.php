@@ -1,27 +1,16 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 //el orden de las rutas importa
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
 
-Route::get('/posts', function () {
-    return 'vista de posts';
-});
+Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/create', function(){
-    return "Aqui se mostrara la vista de crear";
-});
+Route::get('/posts/create', [PostController::class , 'create']);
 
-Route::get('/posts/{post}', function ($post) {
-    return "vista de {$post}";
-});
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
-Route::get('/posts/{post}/{categoria?}', function ($post,$categoria=null) {
-    if($categoria){
-        return "vista de {$post} de la categoria {$categoria}"; 
-    }
-    return "vista de {$post}";
-});
+Route::get('/posts/{post}/{categoria?}', [PostController::class, 'showCategoria']);
