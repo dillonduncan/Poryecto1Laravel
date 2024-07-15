@@ -8,20 +8,17 @@ class PostController extends Controller
 {
     public function index()
     {
-        return "Aqui se mostraran los posts";
+        return view('post.index');
     }
     public function create()
     {
-        return "Aqui es donde se crearan los posts";
+        return view('post.create');
     }
     public function show($post)
     {
-        return "vista de {$post}";
+        return view('post.show', compact('post'));
     }
     public function showCategoria($post, $categoria=null){
-        if($categoria){
-            return "vista de {$post} de la categoria {$categoria}"; 
-        }
-        return "vista de {$post}";
+        return view('post.showCategoria', compact('post', 'categoria'));
     }
 }
